@@ -6,9 +6,10 @@ import { emailHref } from '@/lib/site';
 
 type MobileCtaProps = {
   onNavigate?: () => void;
+  hidden?: boolean;
 };
 
-export default function MobileCta({ onNavigate }: MobileCtaProps) {
+export default function MobileCta({ onNavigate, hidden = false }: MobileCtaProps) {
   const goToContact = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     onNavigate?.();
@@ -18,7 +19,12 @@ export default function MobileCta({ onNavigate }: MobileCtaProps) {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-white/95 p-3 backdrop-blur-md md:hidden">
+    <div
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-white/95 p-3 backdrop-blur-md transition-transform duration-500 md:hidden ${
+        hidden ? 'pointer-events-none translate-y-full' : 'translate-y-0'
+      }`}
+      aria-hidden={hidden}
+    >
       <div className="grid grid-cols-2 gap-3">
         <a
           href="#contact"

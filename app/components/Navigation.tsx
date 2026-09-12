@@ -110,13 +110,10 @@ export default function Navigation() {
       </nav>
 
       <div
-        className={`fixed inset-0 z-40 flex flex-col bg-white px-8 pt-28 pb-28 transition-transform duration-500 lg:hidden ${
+        className={`fixed inset-0 z-40 flex flex-col bg-white px-8 pt-28 pb-12 transition-transform duration-500 lg:hidden ${
           mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
         }`}
       >
-        <button type="button" onClick={() => scrollTo('hero')} className="mb-10 w-fit" aria-label={`${site.name} home`}>
-          <Logo className="h-12" />
-        </button>
         <div className="flex flex-col justify-center space-y-8">
           {navLinks.map((link) => (
             <button
@@ -141,7 +138,7 @@ export default function Navigation() {
           </a>
         </div>
       </div>
-      <MobileCta onNavigate={() => setMobileMenuOpen(false)} />
+      <MobileCta hidden={mobileMenuOpen} onNavigate={() => setMobileMenuOpen(false)} />
     </>
   );
 }
